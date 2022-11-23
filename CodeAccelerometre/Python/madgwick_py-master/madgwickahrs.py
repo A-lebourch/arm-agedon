@@ -17,8 +17,7 @@
 """
 
 import warnings
-import numpy as np
-from numpy.linalg import norm
+from ulab import numpy as np
 from .quaternion import Quaternion
 
 
@@ -61,19 +60,19 @@ class MadgwickAHRS:
         magnetometer = np.array(magnetometer, dtype=float).flatten()
 
         # Normalise accelerometer measurement
-        if norm(accelerometer) is 0:
+        if np.linalg.norm(accelerometer) is 0:
             warnings.warn("accelerometer is zero")
             return
-        accelerometer /= norm(accelerometer)
+        accelerometer /= np.linalg.norm(accelerometer)
 
         # Normalise magnetometer measurement
-        if norm(magnetometer) is 0:
+        if np.linalg.norm(magnetometer) is 0:
             warnings.warn("magnetometer is zero")
             return
-        magnetometer /= norm(magnetometer)
+        magnetometer /= np.linalg.norm(magnetometer)
 
         h = q * (Quaternion(0, magnetometer[0], magnetometer[1], magnetometer[2]) * q.conj())
-        b = np.array([0, norm(h[1:3]), 0, h[3]])
+        b = np.array([0, np.linalg.norm(h[1:3]), 0, h[3]])
 
         # Gradient descent algorithm corrective step
         f = np.array([
@@ -93,7 +92,7 @@ class MadgwickAHRS:
             [2*b[1]*q[2],              2*b[1]*q[3]-4*b[3]*q[1], 2*b[1]*q[0]-4*b[3]*q[2],  2*b[1]*q[1]]
         ])
         step = j.T.dot(f)
-        step /= norm(step)  # normalise step magnitude
+        step /= np.linalg.norm(step)  # normalise step magnitude
 
         # Gyroscope compensation drift
         gyroscopeQuat = Quaternion(0, gyroscope[0], gyroscope[1], gyroscope[2])
@@ -106,7 +105,7 @@ class MadgwickAHRS:
 
         # Integrate to yield quaternion
         q += qdot * self.samplePeriod
-        self.quaternion = Quaternion(q / norm(q))  # normalise quaternion
+        self.quaternion = Quaternion(q / np.linalg.norm(q))  # normalise quaternion
 
     def update_imu(self, gyroscope, accelerometer):
         """
@@ -120,10 +119,10 @@ class MadgwickAHRS:
         accelerometer = np.array(accelerometer, dtype=float).flatten()
 
         # Normalise accelerometer measurement
-        if norm(accelerometer) is 0:
+        if np.linalg.norm(accelerometer) is 0:
             warnings.warn("accelerometer is zero")
             return
-        accelerometer /= norm(accelerometer)
+        accelerometer /= np.linalg.norm(accelerometer)
 
         # Gradient descent algorithm corrective step
         f = np.array([
@@ -137,11 +136,11 @@ class MadgwickAHRS:
             [0, -4*q[1], -4*q[2], 0]
         ])
         step = j.T.dot(f)
-        step /= norm(step)  # normalise step magnitude
+        step /= np.linalg.norm(step)  # normalise step magnitude
 
         # Compute rate of change of quaternion
         qdot = (q * Quaternion(0, gyroscope[0], gyroscope[1], gyroscope[2])) * 0.5 - self.beta * step.T
 
         # Integrate to yield quaternion
         q += qdot * self.samplePeriod
-        self.quaternion = Quaternion(q / norm(q))  # normalise quaternion
+        self.quaternion = Quaternion(q / np.linalg.norm(q))  # normalise quaternion
