@@ -1,0 +1,43 @@
+-- Found Git: /usr/bin/git (found version "2.37.1 (Apple Git-137.1)") 
+-- The C compiler identification is GNU 11.2.0
+-- The CXX compiler identification is GNU 11.2.0
+-- The ASM compiler identification is GNU
+-- Found assembler: /Users/mac/.espressif/tools/xtensa-esp32-elf/esp-2022r1-11.2.0/xtensa-esp32-elf/bin/xtensa-esp32-elf-gcc
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: /Users/mac/.espressif/tools/xtensa-esp32-elf/esp-2022r1-11.2.0/xtensa-esp32-elf/bin/xtensa-esp32-elf-gcc - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /Users/mac/.espressif/tools/xtensa-esp32-elf/esp-2022r1-11.2.0/xtensa-esp32-elf/bin/xtensa-esp32-elf-g++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Building ESP-IDF components for target esp32
+-- Project sdkconfig file /Users/mac/Documents/arm-agedon/arm-agedon_C/sdkconfig
+-- Looking for sys/types.h
+-- Looking for sys/types.h - found
+-- Looking for stdint.h
+-- Looking for stdint.h - found
+-- Looking for stddef.h
+-- Looking for stddef.h - found
+-- Check size of time_t
+-- Check size of time_t - done
+-- Found Python3: /Users/mac/.espressif/python_env/idf5.1_py3.10_env/bin/python (found version "3.10.7") found components: Interpreter 
+-- Performing Test C_COMPILER_SUPPORTS_WFORMAT_SIGNEDNESS
+-- Performing Test C_COMPILER_SUPPORTS_WFORMAT_SIGNEDNESS - Success
+-- App "arm-agedon_C" version: 4e25cd9-dirty
+-- Adding linker script /Users/mac/Documents/arm-agedon/arm-agedon_C/build/esp-idf/esp_system/ld/memory.ld
+-- Adding linker script /Users/mac/Documents/esp-idf/components/esp_system/ld/esp32/sections.ld.in
+-- Adding linker script /Users/mac/Documents/esp-idf/components/esp_rom/esp32/ld/esp32.rom.ld
+-- Adding linker script /Users/mac/Documents/esp-idf/components/esp_rom/esp32/ld/esp32.rom.api.ld
+-- Adding linker script /Users/mac/Documents/esp-idf/components/esp_rom/esp32/ld/esp32.rom.libgcc.ld
+-- Adding linker script /Users/mac/Documents/esp-idf/components/esp_rom/esp32/ld/esp32.rom.newlib-data.ld
+-- Adding linker script /Users/mac/Documents/esp-idf/components/esp_rom/esp32/ld/esp32.rom.syscalls.ld
+-- Adding linker script /Users/mac/Documents/esp-idf/components/esp_rom/esp32/ld/esp32.rom.newlib-funcs.ld
+-- Adding linker script /Users/mac/Documents/esp-idf/components/soc/esp32/ld/esp32.peripherals.ld
+-- Components: app_trace app_update bootloader bootloader_support bt cmock console cxx driver efuse esp-tls esp_adc esp_app_format esp_common esp_eth esp_event esp_gdbstub esp_hid esp_http_client esp_http_server esp_https_ota esp_https_server esp_hw_support esp_lcd esp_local_ctrl esp_netif esp_partition esp_phy esp_pm esp_psram esp_ringbuf esp_rom esp_system esp_timer esp_wifi espcoredump esptool_py fatfs freertos hal heap http_parser idf_test ieee802154 json log lwip main mbedtls mqtt newlib nvs_flash openthread partition_table perfmon protobuf-c protocomm pthread sdmmc soc spi_flash spiffs tcp_transport ulp unity usb vfs wear_levelling wifi_provisioning wpa_supplicant xtensa
+-- Component paths: /Users/mac/Documents/esp-idf/components/app_trace /Users/mac/Documents/esp-idf/components/app_update /Users/mac/Documents/esp-idf/components/bootloader /Users/mac/Documents/esp-idf/components/bootloader_support /Users/mac/Documents/esp-idf/components/bt /Users/mac/Documents/esp-idf/components/cmock /Users/mac/Documents/esp-idf/components/console /Users/mac/Documents/esp-idf/components/cxx /Users/mac/Documents/esp-idf/components/driver /Users/mac/Documents/esp-idf/components/efuse /Users/mac/Documents/esp-idf/components/esp-tls /Users/mac/Documents/esp-idf/components/esp_adc /Users/mac/Documents/esp-idf/components/esp_app_format /Users/mac/Documents/esp-idf/components/esp_common /Users/mac/Documents/esp-idf/components/esp_eth /Users/mac/Documents/esp-idf/components/esp_event /Users/mac/Documents/esp-idf/components/esp_gdbstub /Users/mac/Documents/esp-idf/components/esp_hid /Users/mac/Documents/esp-idf/components/esp_http_client /Users/mac/Documents/esp-idf/components/esp_http_server /Users/mac/Documents/esp-idf/components/esp_https_ota /Users/mac/Documents/esp-idf/components/esp_https_server /Users/mac/Documents/esp-idf/components/esp_hw_support /Users/mac/Documents/esp-idf/components/esp_lcd /Users/mac/Documents/esp-idf/components/esp_local_ctrl /Users/mac/Documents/esp-idf/components/esp_netif /Users/mac/Documents/esp-idf/components/esp_partition /Users/mac/Documents/esp-idf/components/esp_phy /Users/mac/Documents/esp-idf/components/esp_pm /Users/mac/Documents/esp-idf/components/esp_psram /Users/mac/Documents/esp-idf/components/esp_ringbuf /Users/mac/Documents/esp-idf/components/esp_rom /Users/mac/Documents/esp-idf/components/esp_system /Users/mac/Documents/esp-idf/components/esp_timer /Users/mac/Documents/esp-idf/components/esp_wifi /Users/mac/Documents/esp-idf/components/espcoredump /Users/mac/Documents/esp-idf/components/esptool_py /Users/mac/Documents/esp-idf/components/fatfs /Users/mac/Documents/esp-idf/components/freertos /Users/mac/Documents/esp-idf/components/hal /Users/mac/Documents/esp-idf/components/heap /Users/mac/Documents/esp-idf/components/http_parser /Users/mac/Documents/esp-idf/components/idf_test /Users/mac/Documents/esp-idf/components/ieee802154 /Users/mac/Documents/esp-idf/components/json /Users/mac/Documents/esp-idf/components/log /Users/mac/Documents/esp-idf/components/lwip /Users/mac/Documents/arm-agedon/arm-agedon_C/main /Users/mac/Documents/esp-idf/components/mbedtls /Users/mac/Documents/esp-idf/components/mqtt /Users/mac/Documents/esp-idf/components/newlib /Users/mac/Documents/esp-idf/components/nvs_flash /Users/mac/Documents/esp-idf/components/openthread /Users/mac/Documents/esp-idf/components/partition_table /Users/mac/Documents/esp-idf/components/perfmon /Users/mac/Documents/esp-idf/components/protobuf-c /Users/mac/Documents/esp-idf/components/protocomm /Users/mac/Documents/esp-idf/components/pthread /Users/mac/Documents/esp-idf/components/sdmmc /Users/mac/Documents/esp-idf/components/soc /Users/mac/Documents/esp-idf/components/spi_flash /Users/mac/Documents/esp-idf/components/spiffs /Users/mac/Documents/esp-idf/components/tcp_transport /Users/mac/Documents/esp-idf/components/ulp /Users/mac/Documents/esp-idf/components/unity /Users/mac/Documents/esp-idf/components/usb /Users/mac/Documents/esp-idf/components/vfs /Users/mac/Documents/esp-idf/components/wear_levelling /Users/mac/Documents/esp-idf/components/wifi_provisioning /Users/mac/Documents/esp-idf/components/wpa_supplicant /Users/mac/Documents/esp-idf/components/xtensa
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /Users/mac/Documents/arm-agedon/arm-agedon_C/build
