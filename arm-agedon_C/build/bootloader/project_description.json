@@ -1,0 +1,25 @@
+{
+    "project_name":       "bootloader",
+    "project_path":       "/Users/mac/Documents/esp-idf/components/bootloader/subproject",
+    "build_dir":          "/Users/mac/Documents/arm-agedon/arm-agedon_C/build/bootloader",
+    "config_file":        "/Users/mac/Documents/arm-agedon/arm-agedon_C/sdkconfig",
+    "config_defaults":    "",
+    "bootloader_elf":     "",
+    "app_elf":            "bootloader.elf",
+    "app_bin":            "bootloader.bin",
+    "git_revision":       "v5.1-dev-1908-g439a709c42",
+    "target":             "esp32",
+    "rev":                "0",
+    "min_rev":            "0",
+    "max_rev":            "399",
+    "phy_data_partition": "",
+    "monitor_baud" :      "115200",
+    "monitor_toolprefix": "xtensa-esp32-elf-",
+    "config_environment" : {
+        "COMPONENT_KCONFIGS" : "/Users/mac/Documents/esp-idf/components/efuse/Kconfig;/Users/mac/Documents/esp-idf/components/esp_common/Kconfig;/Users/mac/Documents/esp-idf/components/esp_hw_support/Kconfig;/Users/mac/Documents/esp-idf/components/esp_system/Kconfig;/Users/mac/Documents/esp-idf/components/freertos/Kconfig;/Users/mac/Documents/esp-idf/components/hal/Kconfig;/Users/mac/Documents/esp-idf/components/log/Kconfig;/Users/mac/Documents/esp-idf/components/newlib/Kconfig;/Users/mac/Documents/esp-idf/components/spi_flash/Kconfig",
+        "COMPONENT_KCONFIGS_PROJBUILD" : "/Users/mac/Documents/esp-idf/components/bootloader/Kconfig.projbuild;/Users/mac/Documents/esp-idf/components/esp_app_format/Kconfig.projbuild;/Users/mac/Documents/esp-idf/components/esp_rom/Kconfig.projbuild;/Users/mac/Documents/esp-idf/components/esptool_py/Kconfig.projbuild;/Users/mac/Documents/esp-idf/components/partition_table/Kconfig.projbuild"
+    },
+    "build_components" : [ "bootloader", "bootloader_support", "efuse", "esp_app_format", "esp_common", "esp_hw_support", "esp_rom", "esp_system", "esptool_py", "freertos", "hal", "log", "main", "micro-ecc", "newlib", "partition_table", "soc", "spi_flash", "xtensa", "" ],
+    "build_component_paths" : [ "/Users/mac/Documents/esp-idf/components/bootloader", "/Users/mac/Documents/esp-idf/components/bootloader_support", "/Users/mac/Documents/esp-idf/components/efuse", "/Users/mac/Documents/esp-idf/components/esp_app_format", "/Users/mac/Documents/esp-idf/components/esp_common", "/Users/mac/Documents/esp-idf/components/esp_hw_support", "/Users/mac/Documents/esp-idf/components/esp_rom", "/Users/mac/Documents/esp-idf/components/esp_system", "/Users/mac/Documents/esp-idf/components/esptool_py", "/Users/mac/Documents/esp-idf/components/freertos", "/Users/mac/Documents/esp-idf/components/hal", "/Users/mac/Documents/esp-idf/components/log", "/Users/mac/Documents/esp-idf/components/bootloader/subproject/main", "/Users/mac/Documents/esp-idf/components/bootloader/subproject/components/micro-ecc", "/Users/mac/Documents/esp-idf/components/newlib", "/Users/mac/Documents/esp-idf/components/partition_table", "/Users/mac/Documents/esp-idf/components/soc", "/Users/mac/Documents/esp-idf/components/spi_flash", "/Users/mac/Documents/esp-idf/components/xtensa", "" ],
+    "debug_prefix_map_gdbinit": ""
+}
