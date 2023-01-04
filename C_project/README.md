@@ -1,7 +1,11 @@
 | Supported Targets | ESP32 | ESP32-C2 | ESP32-C3 | ESP32-C6 | ESP32-S2 | ESP32-S3 |
 | ----------------- | ----- | -------- | -------- | -------- | -------- | -------- |
 
+<<<<<<< HEAD
 # _C_ESP32_project_
+=======
+# _Sample project_
+>>>>>>> df8d1b8 (ReProject)
 
 (See the README.md file in the upper level 'examples' directory for more information about examples.)
 
