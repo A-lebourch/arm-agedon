@@ -7,3 +7,5 @@ CodeAccelerometre/madgwick_py-master/LICENSE
 CodeAccelerometre/madgwick_py-master/madgwickahrs.py
 CodeAccelerometre/madgwick_py-master/quaternion.py
 CodeAccelerometre/madgwick_py-master/README.md
+C_project/.vscode/settings.json
+.DS_Store
