@@ -4,6 +4,9 @@
   "files.associations": {
     "quaternion.h": "c",
     "sensor_processing_lib.h": "c",
-    "vector_3d.h": "c"
-  }
+    "vector_3d.h": "c",
+    "gpio.h": "c"
+  },
+  "idf.flashType": "UART",
+  "idf.port": "/dev/cu.usbserial-0001"
 }
