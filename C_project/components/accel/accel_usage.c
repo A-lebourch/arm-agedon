@@ -11,7 +11,7 @@ Gyro gyro;
 
 static const char *TAG = "MAIN";
 
-void app_main(void)
+void accel_usage(void)
 {   
     //------------- GPIO INIT ---------------//
     gpio_set_direction(PUSH_BUTTON, GPIO_MODE_INPUT);

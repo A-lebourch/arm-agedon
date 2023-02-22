@@ -1,12 +1,5 @@
 {
-  "C_Cpp.intelliSenseEngine": "Tag Parser",
-  "idf.adapterTargetName": "esp32",
-  "files.associations": {
-    "quaternion.h": "c",
-    "sensor_processing_lib.h": "c",
-    "vector_3d.h": "c",
-    "gpio.h": "c"
-  },
-  "idf.flashType": "UART",
-  "idf.port": "/dev/cu.usbserial-0001"
+    "idf.adapterTargetName": "esp32",
+    "idf.port": "/dev/cu.usbserial-0001",
+    "idf.flashType": "UART"
 }
