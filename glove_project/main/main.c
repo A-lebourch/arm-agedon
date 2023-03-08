@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include <time.h>
+#include <sys/time.h>
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
 #include "esp_log.h"
@@ -20,13 +20,12 @@ void app_main(void)
     accel_init();
 
     while(gpio_get_level(PUSH_BUTTON) != 0) {
-
+        
         /* Gyro values read */
         accel_read_gyro_values(&gyro);
 
-        ESP_LOGI(TAG, "GYRO - \t X: %d \t Y: %d \t Z: %d\n", gyro.X, gyro.Y, gyro.Z);
-
-        vTaskDelay(1000/portTICK_PERIOD_MS);
+        ESP_LOGI(TAG, "GYRO - \t X: %d Y: %d Z: %d\n", gyro.X, gyro.Y, gyro.Z);
+        vTaskDelay(10/portTICK_PERIOD_MS);
     }
 
     accel_deinit();
