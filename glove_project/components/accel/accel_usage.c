@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include <time.h>
+#include <sys/time.h>
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
 #include "esp_log.h"
@@ -20,7 +20,7 @@ void accel_usage(void)
     accel_init();
 
     while(gpio_get_level(PUSH_BUTTON) != 0) {
-
+        
         /* Gyro values read */
         accel_read_gyro_values(&gyro);
 
