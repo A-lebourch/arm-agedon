@@ -9,3 +9,6 @@ CodeAccelerometre/madgwick_py-master/quaternion.py
 CodeAccelerometre/madgwick_py-master/README.md
 C_project/.vscode/settings.json
 .DS_Store
+C_project/sdkconfig
+C_project/.vscode/settings.json
+C_project/sdkconfig.old
