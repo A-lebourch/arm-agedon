@@ -70,28 +70,12 @@ void app_main(void)
     vTaskDelay(2000/portTICK_PERIOD_MS);
 
     while(gpio_get_level(PUSH_BUTTON) != 0) {
-
-        accel_read_gyro_values(&gyro);
-        diffs.X = gyro.X;
-        diffs.Y = gyro.Y;
-        diffs.Z = gyro.Z;
-        vTaskDelay(10/portTICK_PERIOD_MS);
-        accel_read_gyro_values(&gyro);
-        diffs.X -= gyro.X;
-        diffs.Y -= gyro.Y;
-        diffs.Z -= gyro.Z;
-        ESP_LOGI(TAG, "DIFFS - \t X: %d Y: %d Z: %d\n", diffs.X, diffs.Y, diffs.Z);
-        // map diffs (ou gyro) avec position (-250 -> 250, 0 -> 180)
         
-        position.X = (position.X + diffs.X);
-        position.Y = (position.Y + diffs.Y);
-        position.Z = (position.Z + diffs.Z);
-        // position capé à 0, 180
-        // servo (servo1, position.X)
-        // servo (servo2, position.Y)
-        // Z on s'en fout on le bouge que sur 2 axes
-        // poser l'accel sur le dessus de la main (axe x et y spécifiés sur le servo)
-        ESP_LOGI(TAG, "POSITION - \t X: %d Y: %d Z: %d\n", position.X, position.Y, position.Z);
+        /* Gyro values read */
+        accel_read_gyro_values(&gyro);
+
+        ESP_LOGI(TAG, "GYRO - \t X: %d Y: %d Z: %d\n", gyro.X, gyro.Y, gyro.Z);
+        vTaskDelay(10/portTICK_PERIOD_MS);
     }
 
     accel_deinit();
