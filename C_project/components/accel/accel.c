@@ -90,8 +90,7 @@ void accel_read_gyro_values(Gyro *gyro) {
 void accel_print_gyro_errors(void) {
     float Xerror=0, Yerror=0, Zerror=0;
     Gyro gyro;
-    for (size_t i = 0; i < 200; i++)
-    {
+    for (size_t i = 0; i < 200; i++) {
         accel_read_gyro_values(&gyro);
         Xerror += gyro.X;
         Yerror += gyro.Y; 
