@@ -74,16 +74,6 @@ void app_main(void)
     //------------- ACCEL INIT ---------------//
     accel_init();
 
-    ESP_LOGI(TAG, "Press the button on the board to set initial position. ");
-    while(gpio_get_level(PUSH_BUTTON) != 0) {
-
-        vTaskDelay(100/portTICK_PERIOD_MS);
-    }
-    position.X = 0;
-    position.Y = 0; 
-    position.Z = 0;
-    ESP_LOGI(TAG, "Position set, program begin. (Release press on the button)");
-    vTaskDelay(2000/portTICK_PERIOD_MS);
 
     ESP_LOGI(TAG, "Press the button on the board to set initial position. ");
     while(gpio_get_level(PUSH_BUTTON) != 0) {
