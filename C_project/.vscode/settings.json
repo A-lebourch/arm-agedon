@@ -12,6 +12,12 @@
         "ostream": "c",
         "streambuf": "c",
         "functional": "c",
-        "regex": "c"
+        "regex": "c",
+        "ratio": "c",
+        "system_error": "c",
+        "array": "c",
+        "tuple": "c",
+        "type_traits": "c",
+        "utility": "c"
     }
 }

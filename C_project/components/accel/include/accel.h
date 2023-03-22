@@ -25,6 +25,9 @@ extern "C" {
 #define Y_ERROR                             13
 #define Z_ERROR                             0.06
 
+#define MIN_GYRO                            -250
+#define MAX_GYRO                            250
+
 typedef struct Gyro_T {
     int8_t X, Y, Z;
 } Gyro;
