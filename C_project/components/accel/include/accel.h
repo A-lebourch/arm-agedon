@@ -29,6 +29,10 @@ typedef struct Gyro_T {
     int8_t X, Y, Z;
 } Gyro;
 
+typedef struct Angle_T {
+    int16_t X, Y, Z;
+} Angle;
+
 //-------------FUNCTIONS---------------//
 
 void accel_init(void);

@@ -7,7 +7,7 @@
 #include "accel.h"
 
 #define PUSH_BUTTON  GPIO_NUM_0
-Gyro gyro;
+Gyro gyro; // gyro values
 
 static const char *TAG = "MAIN";
 
@@ -15,7 +15,7 @@ void accel_usage(void)
 {   
     //------------- GPIO INIT ---------------//
     gpio_set_direction(PUSH_BUTTON, GPIO_MODE_INPUT);
-
+    
     //------------- ACCEL INIT ---------------//
     accel_init();
 

@@ -65,7 +65,7 @@ void accel_init(void) {
     ESP_LOGI(TAG, "%s", who_am_i==0x68 ? "I2C communication OK" : "I2C communication KO");
 
     //------------- ACCEL/GYRO INIT -------------//
-    mpu6050_register_write_byte(MPU6050_PWR_MGMT_1_REG_ADDR, 0); // enable accelerator
+    mpu6050_register_write_byte(MPU6050_PWR_MGMT_1_REG_ADDR, 0); // enable accelerometer
     mpu6050_register_write_byte(MPU6050_ACCEL_CONFIG_ADDR, 0x10); // +- 2g
     mpu6050_register_write_byte(MPU6050_GYRO_CONFIG_ADDR, 0x10); // +- 250°/s
 }
@@ -90,8 +90,7 @@ void accel_read_gyro_values(Gyro *gyro) {
 void accel_print_gyro_errors(void) {
     float Xerror=0, Yerror=0, Zerror=0;
     Gyro gyro;
-    for (size_t i = 0; i < 200; i++)
-    {
+    for (size_t i = 0; i < 200; i++) {
         accel_read_gyro_values(&gyro);
         Xerror += gyro.X;
         Yerror += gyro.Y; 
@@ -104,7 +103,7 @@ void accel_print_gyro_errors(void) {
 }
 
 void accel_deinit(void) {
-    mpu6050_register_write_byte(MPU6050_PWR_MGMT_1_REG_ADDR, 0b00100000); // disable/sleep accelerator
+    mpu6050_register_write_byte(MPU6050_PWR_MGMT_1_REG_ADDR, 0b00100000); // disable/sleep accelerometer
     ESP_ERROR_CHECK(i2c_driver_delete(I2C_MASTER_NUM));
     ESP_LOGI(TAG, "I2C de-initialized successfully");
 }
