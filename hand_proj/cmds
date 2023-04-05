@@ -1,0 +1,3 @@
+nmcli dev wifi hotspot ifname wlp0s20f3 ssid "Mooa" password "okokokok
+sudo systemctl restart mosquitto
+mosquitto -v
