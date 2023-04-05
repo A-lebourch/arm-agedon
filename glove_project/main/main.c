@@ -77,28 +77,12 @@ void app_main(void)
 
     ESP_LOGI(TAG, "Press the button on the board to set initial position. ");
     while(gpio_get_level(PUSH_BUTTON) != 0) {
-<<<<<<< HEAD:C_project/main/main.c
-
-        vTaskDelay(100/portTICK_PERIOD_MS);
-    }
-    position.X = 0;
-    position.Y = 0;
-    position.Z = 0;
-    ESP_LOGI(TAG, "Position set, program begin. (Release press on the button)");
-    vTaskDelay(2000/portTICK_PERIOD_MS);
-
-    while(gpio_get_level(PUSH_BUTTON) != 0) {
-
-        update_position_angle(&gyro, &position);
-        ESP_LOGI(TAG, "POSITION - \t X: %d Y: %d Z: %d\n", position.X, position.Y, position.Z);
-=======
         
         /* Gyro values read */
         accel_read_gyro_values(&gyro);
 
         ESP_LOGI(TAG, "GYRO - \t X: %d Y: %d Z: %d\n", gyro.X, gyro.Y, gyro.Z);
         vTaskDelay(10/portTICK_PERIOD_MS);
->>>>>>> ca981956b0d93fcea728d35f05730e357d639cf3:glove_project/main/main.c
     }
 
     accel_deinit();
