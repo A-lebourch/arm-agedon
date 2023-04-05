@@ -7,4 +7,4 @@
 // else return potentiometer num
 int pot_init(int adc_port); 
 
-int16_t get_pot_value(int num_pot);
+int get_pot_value(int num_pot);
