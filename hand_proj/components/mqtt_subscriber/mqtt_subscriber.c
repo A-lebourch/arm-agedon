@@ -7,10 +7,15 @@
    CONDITIONS OF ANY KIND, either express or implied.
 */
 
-#include"mqtt_sub.h"
+#include"mqtt_subscriber.h"
 
 const char *TAG = "MQTT_EXAMPLE";
+int servo_values[7];
 esp_mqtt_client_handle_t client;
+int get_servo_value(int servo)
+{
+    return servo_values[servo];
+}
 void log_error_if_nonzero(const char *message, int error_code)
 {
     if (error_code != 0) {
@@ -62,20 +67,41 @@ void mqtt_event_handler(void *handler_args, esp_event_base_t base, int32_t event
         ESP_LOGI(TAG, "MQTT_EVENT_DATA");
         printf("TOPIC=%.*s\r\n", event->topic_len, event->topic);
         printf("DATA=%.*s\r\n", event->data_len, event->data);
-
+        
 
         char topic[128];
-        for(int i = 0; i < event->topic_len; i++)topic[i]=event->topic[i];
+        
+        for(int i = 0; i < event->topic_len; i++)
+        {
+            //printf("%c\n",event->topic[i]);
+            // printf("%d",i);
+            topic[i]=event->topic[i];
+        }
+        printf("getting topic : %d\n",event->topic_len);
         // char *nik =strtok(topic, "/");
         char *motor =strtok(topic, "/");
         motor =strtok(NULL, "/");
         motor =strtok(NULL, "/");
 
         char str_value[128];
-        for(int i = 0; i < event->data_len; i++)str_value[i]=event->data[i];
-        double value = atof(str_value);
+        printf("debug 1 \n");
+        printf("data len : %d\n",event->data_len);
+        printf("data : %s\n",event->data);
+        // for(int i = 0; i < event->data_len; i++)str_value[i]=event->data[i];
+        for(int i = 0; i < event->data_len; i++)
+        {
+            printf("%d : %c\n",i ,event->data[i]);
+            // printf("%d",i);
+            str_value[i]=event->data[i];
+        }
+        printf("debug 2 \n");
+        // double value = atof(str_value);
+        int value = atoi(str_value);
+        int int_motor = atoi(motor);
 
-        printf("engine %s will be at %f", motor, value);
+        printf("engine %d will be at %d", int_motor, value);
+        servo_values[int_motor]=value;
+        // mouvement_servo(1,(int)motor, (int)value );
         break;
     case MQTT_EVENT_ERROR:
         ESP_LOGI(TAG, "MQTT_EVENT_ERROR");
@@ -95,6 +121,9 @@ void mqtt_event_handler(void *handler_args, esp_event_base_t base, int32_t event
 
 void mqtt_app_start(void)
 {
+    for(int i = 0; i<7; i++)servo_values[i] = 0;
+    for(int i = 0; i<7; i++)printf("%d %d\n", i,servo_values[i] );
+    
     ESP_LOGI(TAG, "[APP] Startup..");
     ESP_LOGI(TAG, "[APP] Free memory: %d bytes", esp_get_free_heap_size());
     ESP_LOGI(TAG, "[APP] IDF version: %s", esp_get_idf_version());
@@ -118,7 +147,8 @@ void mqtt_app_start(void)
     ESP_ERROR_CHECK(example_connect());
 
     esp_mqtt_client_config_t mqtt_cfg = {
-        .broker.address.uri = CONFIG_BROKER_URL,
+        // .broker.address.uri = CONFIG_BROKER_URL,
+        .broker.address.uri ="mqtt://10.42.0.1:1883",
     };
 #if CONFIG_BROKER_URL_FROM_STDIN
     char line[128];
