@@ -5,7 +5,7 @@
 #include "esp_log.h"
 #include "driver/gpio.h"
 #include "accel.h"
-#include "potentiometre.h"
+// #include "potentiometre.h"
 #include "mqtt_publisher.h"
 
 #define PUSH_BUTTON  GPIO_NUM_0
@@ -70,13 +70,24 @@ static const char *TAG = "MAIN";
 
 void app_main(void)
 {   
+    
 
-    int pot = pot_init(8);
-    while(1)
-    {
-        printf("%d\n",get_pot_value(pot));
-        vTaskDelay(100/portTICK_PERIOD_MS);
-    } 
+    mqtt_init();
+    
+    // vTaskDelay(500/portTICK_PERIOD_MS);
+    // printf("\n\n\nstart init pot\n");
+    // vTaskDelay(1500/portTICK_PERIOD_MS);
+    // int pot = pot_init(8);
+    // int val = get_pot_value(pot);
+    // printf("my value : %d\n",val);
+    
+    // printf("enter loop\n");
+    // while(1)
+    // {
+    //     val = get_pot_value(pot);
+    //     printf("my value : %d\n",val);
+    //     vTaskDelay(500/portTICK_PERIOD_MS);
+    // } 
     // //------------- GPIO INIT ---------------//
     // gpio_set_direction(PUSH_BUTTON, GPIO_MODE_INPUT);
 

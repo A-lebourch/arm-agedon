@@ -22,9 +22,18 @@
 #include "esp_log.h"
 #include "mqtt_client.h"
 
+#include "driver/adc.h"
+
+// #include "driver/gpio.h"
+
+// #define POTENTIOMETER_GPIO 26
 
 void log_error_if_nonzero(const char *message, int error_code);
 void mqtt_event_handler(void *handler_args, esp_event_base_t base, int32_t event_id, void *event_data);
 void mqtt_app_start(void);
-void send_value(uint8_t motor, uint16_t angle);
+void send_value(int motor, int angle);
 void mqtt_init(void);
+void loop();
+
+
+void my_task();
