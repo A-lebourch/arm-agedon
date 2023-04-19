@@ -21,28 +21,40 @@ extern "C" {
 #define MPU6050_PWR_MGMT_1_REG_ADDR         0x6B        /*!< Register addresses of the power managment register */
 #define MPU6050_RESET_BIT                   7
 
-#define X_ERROR                             0
-#define Y_ERROR                             13
-#define Z_ERROR                             0.06
+#define X_GYRO_ERROR                        0.6
+#define Y_GYRO_ERROR                        -2
+#define Z_GYRO_ERROR                        1.3
+
+#define X_ACCEL_ERROR                       0.05
+#define Y_ACCEL_ERROR                       0
+#define Z_ACCEL_ERROR                       -0.05
 
 #define MIN_GYRO                            -250
 #define MAX_GYRO                            250
 
-typedef struct Gyro_T {
-    int8_t X, Y, Z;
-} Gyro;
+#define G                                   9.8067
+#define MIN_ACCEL                           -2*G
+#define MAX_ACCEL                           2*G
+
+typedef struct Accel_t {
+    float x, y, z;
+} Accel;
 
 typedef struct Angle_T {
-    int16_t X, Y, Z;
+    int16_t x, y, z;
 } Angle;
 
 //-------------FUNCTIONS---------------//
 
 void accel_init(void);
 
-void accel_read_gyro_values(Gyro *gyro);
+void accel_read_values(Accel *accel);
+
+void accel_read_gyro_values(Accel *gyro);
 
 void accel_print_gyro_errors(void);
+
+void accel_print_accel_errors(void);
 
 void accel_deinit(void);
 

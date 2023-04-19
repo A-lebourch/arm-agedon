@@ -7,7 +7,7 @@
 #include "accel.h"
 
 #define PUSH_BUTTON  GPIO_NUM_0
-Gyro gyro; // gyro values
+Accel gyro; // gyro values
 
 static const char *TAG = "MAIN";
 
@@ -24,7 +24,7 @@ void accel_usage(void)
         /* Gyro values read */
         accel_read_gyro_values(&gyro);
 
-        ESP_LOGI(TAG, "GYRO - \t X: %d \t Y: %d \t Z: %d\n", gyro.X, gyro.Y, gyro.Z);
+        ESP_LOGI(TAG, "GYRO - \t X: %f \t Y: %f \t Z: %f\n", gyro.x, gyro.y, gyro.z);
 
         vTaskDelay(1000/portTICK_PERIOD_MS);
     }
