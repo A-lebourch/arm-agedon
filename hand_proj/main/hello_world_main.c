@@ -15,12 +15,13 @@
 void app_main(void)
 {   
     servoConfig();
-    mqtt_app_start();
+    // mqtt_app_start();
     
     // servo_values = [1,0,0,0,0,0,0];
     int maVariable = 400;
 
-    for (int j = 0; j < 5; j++)
+    // for (int j = 0; j < 15; j++)
+    while(1)
     {
         maVariable += 150;
         for (int i = 0; i < NOMBRE_SERVO_ET_POT; i++)
@@ -28,9 +29,10 @@ void app_main(void)
             // int valeurTest = verifDirectionServo(ServoPosActuelle[i], maVariable);
             printf("mvt\n");
             mouvement_servo(1, i,maVariable);
-            vTaskDelay(100 / portTICK_PERIOD_MS);
-            if (maVariable > 1000) maVariable = 50;
+            
+            if (maVariable > 1000) maVariable = 400;
         }
+        vTaskDelay(500 / portTICK_PERIOD_MS);
     }
 
     while(1)
@@ -46,6 +48,9 @@ void app_main(void)
     }
 
 }
+
+
+
 // void app_main()
 // {
 //     servoConfig();
