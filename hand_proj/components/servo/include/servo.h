@@ -14,8 +14,13 @@ extern "C"
 #include "driver/gpio.h"
 #include "driver/ledc.h"
 
-#define SERVO1_GPIO 18
-#define SERVO2_GPIO 19
+#define SERVO1_GPIO 12
+#define SERVO2_GPIO 13
+#define SERVO3_GPIO 14
+#define SERVO4_GPIO 15
+#define SERVO5_GPIO 25
+#define SERVO6_GPIO 26
+#define SERVO7_GPIO 27
 
 #define SERVO_FREQ 50
 #define MIN_PULSE_WIDTH 400
@@ -23,7 +28,7 @@ extern "C"
 
 #define MIN_VALUE_POT 0
 #define MAX_VALUE_POT 4095
-#define NOMBRE_SERVO_ET_POT 2
+#define NOMBRE_SERVO_ET_POT 7
 
 // int list_potar[NOMBRE_SERVO_ET_POT] = {8, 9}; // valeur adc
 // #ifndef list_potar

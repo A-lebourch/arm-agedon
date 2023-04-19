@@ -1,4 +1,6 @@
 #include"mqtt_publisher.h"
+#include"potentiometre.h"
+// #include "potentiometre.h"
 #define CONFIG_BROKER_URL "mqtt://10.42.0.1:1883"
 const char *TAG = "MQTT_EXAMPLE";
 
@@ -102,27 +104,26 @@ void mqtt_app_start(void)
     /* The last argument may be used to pass data to the event handler, in this example mqtt_event_handler */
     esp_mqtt_client_register_event(client, ESP_EVENT_ANY_ID, mqtt_event_handler, NULL);
     esp_mqtt_client_start(client);
-    
-
 }
 
-void send_value(uint8_t motor, uint16_t angle)
+void send_value(int motor, int angle)
 {
     char motor_id[10];
     sprintf(motor_id, "%u", motor);
     char topic[20] = "/topic/moteur/";
     strcat(topic, motor_id);
-
-    char angle_str[4];
+    char angle_str[10];
     sprintf(angle_str, "%u", angle);
+    printf("topic : %s\nvalue : %s\n",topic,angle_str);
     
-    
-    vTaskDelay(5000);
     esp_mqtt_client_publish(client, topic, angle_str, 0, 0, 0);
 }
 
 void mqtt_init(void)
 {
+    
+    
+    
     ESP_LOGI(TAG, "[APP] Startup..");
     ESP_LOGI(TAG, "[APP] Free memory: %d bytes", esp_get_free_heap_size());
     ESP_LOGI(TAG, "[APP] IDF version: %s", esp_get_idf_version());
@@ -134,11 +135,64 @@ void mqtt_init(void)
     esp_log_level_set("esp-tls", ESP_LOG_VERBOSE);
     esp_log_level_set("TRANSPORT", ESP_LOG_VERBOSE);
     esp_log_level_set("outbox", ESP_LOG_VERBOSE);
-
+    // loop();
+    // vTaskDelay(50/portTICK_PERIOD_MS);
     ESP_ERROR_CHECK(nvs_flash_init());
     ESP_ERROR_CHECK(esp_netif_init());
     ESP_ERROR_CHECK(esp_event_loop_create_default());
     ESP_ERROR_CHECK(example_connect());
 
+
     mqtt_app_start();
+    xTaskCreate(&my_task, "my_task", 4096, NULL, 1, NULL);
+
 }
+
+
+void my_task()
+{
+    adc1_config_width(ADC_WIDTH_BIT_12);
+    adc1_config_channel_atten(ADC1_CHANNEL_7, ADC_ATTEN_DB_11);
+
+    while (1)
+    {
+        int potentiometer_value = adc1_get_raw(ADC1_CHANNEL_7);
+        printf("Potentiometer value: %d\n", potentiometer_value);
+        send_value(0,potentiometer_value);
+        vTaskDelay(1000 / portTICK_PERIOD_MS);
+    }
+}
+
+// void my_task(void *pvParameter) {
+//     // Code exécuté dans le thread
+//     // int pot = pot_init(8);
+//     // int val = get_pot_value(pot);
+//     // while(1)
+//     // {
+//     //     val = get_pot_value(pot);
+//     //     printf("my value : %d\n",val);
+//     //     vTaskDelay(500/portTICK_PERIOD_MS);
+//     // }
+//     esp_rom_gpio_pad_select_gpio(POTENTIOMETER_GPIO);
+//     gpio_set_direction(POTENTIOMETER_GPIO, GPIO_MODE_INPUT);
+
+//     // Configurer l'ADC pour lire la valeur du potentiomètre
+//     adc1_config_width(ADC_WIDTH_BIT_12);
+//     adc1_config_channel_atten(ADC1_CHANNEL_6, ADC_ATTEN_DB_0);
+
+//     // Boucle infinie pour lire la valeur du potentiomètre
+//     while(1) {
+//         // Lire la valeur de l'ADC pour le potentiomètre
+//         int value = adc1_get_raw(ADC1_CHANNEL_6);
+
+//         // Faire quelque chose avec la valeur lue, par exemple l'afficher sur la console
+//         printf("Valeur lue : %d\n", value);
+
+//         send_value(0,value);
+
+//         // Attendre un certain temps avant de lire à nouveau la valeur du potentiomètre
+//         vTaskDelay(pdMS_TO_TICKS(500));
+//     }
+
+
+// }

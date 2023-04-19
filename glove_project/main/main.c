@@ -5,6 +5,8 @@
 #include "esp_log.h"
 #include "driver/gpio.h"
 #include "accel.h"
+// #include "potentiometre.h"
+#include "mqtt_publisher.h"
 #include <math.h>
 
 #define PUSH_BUTTON  GPIO_NUM_0
@@ -87,6 +89,6 @@ void app_main(void)
         vTaskDelay(dt * 1000/portTICK_PERIOD_MS); // in milliseconds
     }
 
-    accel_deinit();
-    return;
+    // accel_deinit();
+    // return;
 }
