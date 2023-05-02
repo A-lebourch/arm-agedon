@@ -1,5 +1,6 @@
 #include"mqtt_publisher.h"
-#include"potentiometre.h"
+#include "driver/adc.h"
+// #include "accel.h"
 // #include "potentiometre.h"
 #define CONFIG_BROKER_URL "mqtt://10.42.0.1:1883"
 const char *TAG = "MQTT_EXAMPLE";
@@ -110,7 +111,7 @@ void send_value(int motor, int angle)
 {
     char motor_id[10];
     sprintf(motor_id, "%u", motor);
-    char topic[20] = "/topic/moteur/";
+    char topic[15] = "/moteur/";
     strcat(topic, motor_id);
     char angle_str[10];
     sprintf(angle_str, "%u", angle);
@@ -121,9 +122,6 @@ void send_value(int motor, int angle)
 
 void mqtt_init(void)
 {
-    
-    
-    
     ESP_LOGI(TAG, "[APP] Startup..");
     ESP_LOGI(TAG, "[APP] Free memory: %d bytes", esp_get_free_heap_size());
     ESP_LOGI(TAG, "[APP] IDF version: %s", esp_get_idf_version());
@@ -142,24 +140,34 @@ void mqtt_init(void)
     ESP_ERROR_CHECK(esp_event_loop_create_default());
     ESP_ERROR_CHECK(example_connect());
 
-
     mqtt_app_start();
-    xTaskCreate(&my_task, "my_task", 4096, NULL, 1, NULL);
-
+    // xTaskCreate(&my_task, "my_task", 4096, NULL, 1, NULL);
 }
 
 
-void my_task()
+   void my_task()
 {
     adc1_config_width(ADC_WIDTH_BIT_12);
+    adc1_config_channel_atten(ADC1_CHANNEL_3, ADC_ATTEN_DB_11);
+    adc1_config_channel_atten(ADC1_CHANNEL_4, ADC_ATTEN_DB_11);
+    adc1_config_channel_atten(ADC1_CHANNEL_5, ADC_ATTEN_DB_11);
+    adc1_config_channel_atten(ADC1_CHANNEL_6, ADC_ATTEN_DB_11);
     adc1_config_channel_atten(ADC1_CHANNEL_7, ADC_ATTEN_DB_11);
+
 
     while (1)
     {
-        int potentiometer_value = adc1_get_raw(ADC1_CHANNEL_7);
-        printf("Potentiometer value: %d\n", potentiometer_value);
-        send_value(0,potentiometer_value);
-        vTaskDelay(1000 / portTICK_PERIOD_MS);
+        int potentiometer_value3 = adc1_get_raw(ADC1_CHANNEL_3);
+        int potentiometer_value4 = adc1_get_raw(ADC1_CHANNEL_4);
+        int potentiometer_value5 = adc1_get_raw(ADC1_CHANNEL_5);
+        int potentiometer_value6 = adc1_get_raw(ADC1_CHANNEL_6);
+        int potentiometer_value7 = adc1_get_raw(ADC1_CHANNEL_7);
+        send_value(3,potentiometer_value3);
+        send_value(4,potentiometer_value4);
+        send_value(5,potentiometer_value5);
+        send_value(6,potentiometer_value6);
+        send_value(7,potentiometer_value7);
+        vTaskDelay(500 / portTICK_PERIOD_MS);
     }
 }
 
