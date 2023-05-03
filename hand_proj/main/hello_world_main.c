@@ -13,15 +13,15 @@
 #include "mqtt_subscriber.h"
 #include "servo.h"
 void app_main(void)
-{   
+{
     servoConfig();
     // mqtt_app_start();
-    
+
     // servo_values = [1,0,0,0,0,0,0];
     int maVariable = 400;
 
     // for (int j = 0; j < 15; j++)
-    while(1)
+    /*while(1)
     {
         maVariable += 150;
         for (int i = 0; i < NOMBRE_SERVO_ET_POT; i++)
@@ -29,27 +29,32 @@ void app_main(void)
             // int valeurTest = verifDirectionServo(ServoPosActuelle[i], maVariable);
             printf("mvt\n");
             mouvement_servo(1, i,maVariable);
-            
+
             if (maVariable > 1000) maVariable = 400;
         }
         vTaskDelay(500 / portTICK_PERIOD_MS);
     }
-
-    while(1)
+    */
+    while (1)
     {
         for (int i = 0; i < NOMBRE_SERVO_ET_POT; i++)
         {
             // int valeurTest = verifDirectionServo(ServoPosActuelle[i], maVariable);
-            printf("\n c'est la : %d pour %d",get_servo_value(i),i);
-            mouvement_servo(1, i,(int) get_servo_value(i));
+            printf("\n c'est la : %d pour %d", get_servo_value(i), i);
+            if (i <= 1)
+            {
+                // les servos correspondant au poignet
+                int angle_servo = map(get_servo_value(i), MIN_VALUE_ACC, MAX_VALUE_ACC, MIN_PULSE_WIDTH, MAX_PULSE_WIDTH);
+            }
+            else
+                // les servos correspondant aux doigts
+                int angle_servo = map(get_servo_value(i), MIN_VALUE_POT, MAX_VALUE_POT, MIN_PULSE_WIDTH, MAX_PULSE_WIDTH);
+
+            mouvement_servo(1, i, angle_servo);
             vTaskDelay(100 / portTICK_PERIOD_MS);
-            
         }
     }
-
 }
-
-
 
 // void app_main()
 // {
@@ -58,7 +63,6 @@ void app_main(void)
 
 //     // adc2_config_channel_atten(ADC2_CHANNEL_8, ADC_ATTEN_DB_11); // CONFIG LE CHANNEL SUR LEQUEL ON ECRIT
 
-    
 //     // int ServoPosActuelle[NOMBRE_SERVO_ET_POT];
 //     // for (int i = 0; i < NOMBRE_SERVO_ET_POT; i++)
 //     // {

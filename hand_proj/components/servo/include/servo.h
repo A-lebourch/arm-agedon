@@ -30,20 +30,23 @@ extern "C"
 #define MAX_VALUE_POT 4095
 #define NOMBRE_SERVO_ET_POT 7
 
-// int list_potar[NOMBRE_SERVO_ET_POT] = {8, 9}; // valeur adc
-// #ifndef list_potar
+#define MIN_VALUE_ACC -180
+#define MAX_VALUE_ACC 180
 
-// #endif
+    // int list_potar[NOMBRE_SERVO_ET_POT] = {8, 9}; // valeur adc
+    // #ifndef list_potar
 
-int verifDirectionServo(int posActu, int posApres);
+    // #endif
 
-void servoConfig(void);
+    int verifDirectionServo(int posActu, int posApres);
 
-void mouvement_servo(int valeurTest, int num_servo, int value);
+    void servoConfig(void);
 
-int arrondi(float n);
+    void mouvement_servo(int valeurTest, int num_servo, int value);
 
-int map(float valeur, int valMinDepart, int valMaxDepart, int valMinArrive, int valMaxArrive);
+    int arrondi(float n);
+
+    int map(float valeur, int valMinDepart, int valMaxDepart, int valMinArrive, int valMaxArrive);
 
 #endif
 
