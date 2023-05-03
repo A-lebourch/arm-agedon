@@ -122,12 +122,11 @@ void send_value(int motor, int angle)
 
     char motor_id[10];
     sprintf(motor_id, "%u", motor);
-    char topic[15] = "/moteur/";
+    char topic[20] = "/topic/moteur/";
     strcat(topic, motor_id);
     char angle_str[10];
     sprintf(angle_str, "%u", angle);
-    printf("topic : %s\nvalue : %s\n", topic, angle_str);
-
+    
     esp_mqtt_client_publish(client, topic, angle_str, 0, 0, 0);
 }
 
@@ -179,36 +178,3 @@ void my_task()
         vTaskDelay(500 / portTICK_PERIOD_MS);
     }
 }
-
-// void my_task(void *pvParameter) {
-//     // Code exécuté dans le thread
-//     // int pot = pot_init(8);
-//     // int val = get_pot_value(pot);
-//     // while(1)
-//     // {
-//     //     val = get_pot_value(pot);
-//     //     printf("my value : %d\n",val);
-//     //     vTaskDelay(500/portTICK_PERIOD_MS);
-//     // }
-//     esp_rom_gpio_pad_select_gpio(POTENTIOMETER_GPIO);
-//     gpio_set_direction(POTENTIOMETER_GPIO, GPIO_MODE_INPUT);
-
-//     // Configurer l'ADC pour lire la valeur du potentiomètre
-//     adc1_config_width(ADC_WIDTH_BIT_12);
-//     adc1_config_channel_atten(ADC1_CHANNEL_6, ADC_ATTEN_DB_0);
-
-//     // Boucle infinie pour lire la valeur du potentiomètre
-//     while(1) {
-//         // Lire la valeur de l'ADC pour le potentiomètre
-//         int value = adc1_get_raw(ADC1_CHANNEL_6);
-
-//         // Faire quelque chose avec la valeur lue, par exemple l'afficher sur la console
-//         printf("Valeur lue : %d\n", value);
-
-//         send_value(0,value);
-
-//         // Attendre un certain temps avant de lire à nouveau la valeur du potentiomètre
-//         vTaskDelay(pdMS_TO_TICKS(500));
-//     }
-
-// }
