@@ -50,6 +50,11 @@ void app_main(void)
                 printf("\n c'est la : %d pour %d", angle_servo, i);
                 printf("\n c'est la : %d pour %d", get_servo_value(i), i);
             }
+            else if(i == 2)
+            {
+               // les servos correspondant aux doigts
+                angle_servo = map(MAX_PULSE_WIDTH - get_servo_value(i), MIN_VALUE_POT, MAX_VALUE_POT, MIN_PULSE_WIDTH, MAX_PULSE_WIDTH);
+            }
             else
             {
                // les servos correspondant aux doigts
@@ -58,8 +63,9 @@ void app_main(void)
             
 
             mouvement_servo(1, i, angle_servo);
-            vTaskDelay(50 / portTICK_PERIOD_MS);
         }
+        vTaskDelay(10/ portTICK_PERIOD_MS);
+        
     }
 }
 

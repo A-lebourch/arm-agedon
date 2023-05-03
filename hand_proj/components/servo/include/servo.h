@@ -24,7 +24,7 @@ extern "C"
 
 #define SERVO_FREQ 50
 #define MIN_PULSE_WIDTH 400
-#define MAX_PULSE_WIDTH 1000
+#define MAX_PULSE_WIDTH 1400
 
 #define MIN_VALUE_POT 0
 #define MAX_VALUE_POT 4095
