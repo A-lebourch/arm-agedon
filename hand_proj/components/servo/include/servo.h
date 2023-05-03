@@ -31,7 +31,7 @@ extern "C"
 #define NOMBRE_SERVO_ET_POT 7
 
 #define MIN_VALUE_ACC 0
-#define MAX_VALUE_ACC 360
+#define MAX_VALUE_ACC 180
 
     // int list_potar[NOMBRE_SERVO_ET_POT] = {8, 9}; // valeur adc
     // #ifndef list_potar

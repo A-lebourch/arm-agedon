@@ -17,7 +17,7 @@ Accel gyro;
 
 static const char *TAG = "MAIN";
 
-#define dt 0.500   // Temps d'échantillonnage en secondes
+#define dt 0.050   // Temps d'échantillonnage en secondes
 #define Q_angle 0.5 // Erreur de mesure de l'angle
 #define Q_gyro 0.1 // Erreur de mesure de la vitesse angulaire
 #define R_angle 0.03 // Erreur du modèle d'angle
@@ -102,8 +102,8 @@ void app_main(void)
         kalman_filter(accel_x_angle, gyro.x, PX, &x_angle, &x_bias);
         // print angle
         ESP_LOGI(TAG, "X : %3.4f \t Y : %3.4f", x_angle, y_angle);
-        int x_value_to_send = (int) (x_angle + 180); // -180/180 -> 0/360
-        int y_value_to_send = (int) (y_angle + 180);
+        int x_value_to_send = (int) (x_angle + 90); // -90/90 -> 0/180
+        int y_value_to_send = (int) (y_angle + 90);
         send_value(0, x_value_to_send);
         send_value(1, y_value_to_send);
 

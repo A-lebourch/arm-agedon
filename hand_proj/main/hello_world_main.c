@@ -58,7 +58,7 @@ void app_main(void)
             
 
             mouvement_servo(1, i, angle_servo);
-            vTaskDelay(200 / portTICK_PERIOD_MS);
+            vTaskDelay(50 / portTICK_PERIOD_MS);
         }
     }
 }
