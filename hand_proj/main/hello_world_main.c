@@ -15,7 +15,7 @@
 void app_main(void)
 {
     servoConfig();
-    // mqtt_app_start();
+    mqtt_app_start();
 
     // servo_values = [1,0,0,0,0,0,0];
     int maVariable = 400;
@@ -40,18 +40,25 @@ void app_main(void)
         for (int i = 0; i < NOMBRE_SERVO_ET_POT; i++)
         {
             // int valeurTest = verifDirectionServo(ServoPosActuelle[i], maVariable);
-            printf("\n c'est la : %d pour %d", get_servo_value(i), i);
+            
+            int angle_servo = -1;
             if (i <= 1)
             {
                 // les servos correspondant au poignet
-                int angle_servo = map(get_servo_value(i), MIN_VALUE_ACC, MAX_VALUE_ACC, MIN_PULSE_WIDTH, MAX_PULSE_WIDTH);
+
+                angle_servo = map(get_servo_value(i), MIN_VALUE_ACC, MAX_VALUE_ACC, MIN_PULSE_WIDTH, MAX_PULSE_WIDTH);
+                printf("\n c'est la : %d pour %d", angle_servo, i);
+                printf("\n c'est la : %d pour %d", get_servo_value(i), i);
             }
             else
-                // les servos correspondant aux doigts
-                int angle_servo = map(get_servo_value(i), MIN_VALUE_POT, MAX_VALUE_POT, MIN_PULSE_WIDTH, MAX_PULSE_WIDTH);
+            {
+               // les servos correspondant aux doigts
+                angle_servo = map(get_servo_value(i), MIN_VALUE_POT, MAX_VALUE_POT, MIN_PULSE_WIDTH, MAX_PULSE_WIDTH);
+            }
+            
 
             mouvement_servo(1, i, angle_servo);
-            vTaskDelay(100 / portTICK_PERIOD_MS);
+            vTaskDelay(200 / portTICK_PERIOD_MS);
         }
     }
 }

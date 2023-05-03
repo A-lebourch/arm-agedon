@@ -68,8 +68,8 @@ void mqtt_event_handler(void *handler_args, esp_event_base_t base, int32_t event
         break;
     case MQTT_EVENT_DATA: // read
         ESP_LOGI(TAG, "MQTT_EVENT_DATA");
-        printf("TOPIC=%.*s\r\n", event->topic_len, event->topic);
-        printf("DATA=%.*s\r\n", event->data_len, event->data);
+        // printf("TOPIC=%.*s\r\n", event->topic_len, event->topic);
+        // printf("DATA=%.*s\r\n", event->data_len, event->data);
 
         char topic[128];
 
@@ -79,29 +79,29 @@ void mqtt_event_handler(void *handler_args, esp_event_base_t base, int32_t event
             //  printf("%d",i);
             topic[i] = event->topic[i];
         }
-        printf("getting topic : %d\n", event->topic_len);
+        //printf("getting topic : %d\n", event->topic_len);
         // char *nik =strtok(topic, "/");
         char *motor = strtok(topic, "/");
         motor = strtok(NULL, "/");
         motor = strtok(NULL, "/");
 
         char str_value[128];
-        printf("debug 1 \n");
-        printf("data len : %d\n", event->data_len);
-        printf("data : %s\n", event->data);
+        // printf("debug 1 \n");
+        // printf("data len : %d\n", event->data_len);
+        // printf("data : %s\n", event->data);
         // for(int i = 0; i < event->data_len; i++)str_value[i]=event->data[i];
         for (int i = 0; i < event->data_len; i++)
         {
-            printf("%d : %c\n", i, event->data[i]);
+            // printf("%d : %c\n", i, event->data[i]);
             // printf("%d",i);
             str_value[i] = event->data[i];
         }
-        printf("debug 2 \n");
+        // printf("debug 2 \n");
         // double value = atof(str_value);
         int value = atoi(str_value);
         int int_motor = atoi(motor);
 
-        printf("engine %d will be at %d", int_motor, value);
+        // printf("engine %d will be at %d", int_motor, value);
         servo_values[int_motor] = value;
         // mouvement_servo(1,(int)motor, (int)value );
         break;
